@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  padding-left: 45px;
+}
+img {
+  width: 10%;
+  display: inline-block;
+}
+h1 {
+  display: inline-block;
+}

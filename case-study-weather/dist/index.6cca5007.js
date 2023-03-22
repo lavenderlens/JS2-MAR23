@@ -1,0 +1,2 @@
+console.log("index.js loaded"),onload=()=>{document.body.appendChild(function(){const t=document.createElement("p");return t.innerText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit, accusantium tempora ipsam voluptatibus odit eos architecto corrupti beatae molestiae laborum expedita! Est quod enim tempora iure deleniti quas incidunt",t.setAttribute("class",""),t.setAttribute("id","para1"),t}())};
+//# sourceMappingURL=index.6cca5007.js.map
