@@ -1,14 +1,13 @@
+import { H2 } from "./components/H2";
+import Paragraph from "./components/Paragraph"; //default export - no curlies
+
 console.log("index.js loaded");
 
 onload = () => {
-  function Paragraph() {
-    const p = document.createElement("p"); //valid HTML tag name
-    p.innerText =
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit, accusantium tempora ipsam voluptatibus odit eos architecto corrupti beatae molestiae laborum expedita! Est quod enim tempora iure deleniti quas incidunt";
-    p.setAttribute("class", "");
-    p.setAttribute("id", "para1");
-    return p;
-  }
-
-  document.body.appendChild(Paragraph());
+  document.body.appendChild(H2("Weekly forecast"));
+  document.body.appendChild(
+    Paragraph(
+      `I was part of something special. Jaguar shark! So tell me - does it really exist? This thing comes fully loaded. AM/FM radio, reclining bucket seats, and... power windows. God help us, we're in the hands of engineers. So you two dig up, dig up dinosaurs?`
+    )
+  );
 };

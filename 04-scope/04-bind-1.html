@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>04 Bind</title>
+  </head>
+  <body>
+    <h1>04 Scope: Bind - BEFORE</h1>
+    <ul id="movieTitlesList"></ul>
+    <div id="movieDiv"></div>
+    <script>
+      function Movie(title, year, rating) {
+        this.title = title;
+        this.year = year;
+        this.rating = rating;
+      }
+      Movie.prototype.render = function (parent) {
+        var listItem = document.createElement("li");
+        var anchor = document.createElement("a");
+        anchor.setAttribute("href", "#");
+        // anchor.innerHTML = this.title;
+        anchor.innerHTML = `${this.title}: rating ${this.rating}`; //this is correct context HERE
+        anchor.addEventListener("click", function (event) {
+          alert("Rating: " + this.rating); //different scope level HERE
+        });
+        listItem.appendChild(anchor);
+        parent.appendChild(listItem);
+      };
+      var movies = [
+        new Movie("The Shawshank Redemption", 1994, 9.2),
+        new Movie("The Godfather", 1972, 9.2),
+        new Movie("The Godfather Part II", 1974, 9.0),
+        new Movie("The Dark Knight", 2008, 9.0),
+        new Movie("12 Angry Men", 1957, 8.9),
+      ];
+      window.addEventListener("load", function (event) {
+        var movieTitlesList = document.getElementById("movieTitlesList");
+        movies.forEach(function (movie) {
+          movie.render(movieTitlesList);
+        });
+      });
+    </script>
+  </body>
+</html>
