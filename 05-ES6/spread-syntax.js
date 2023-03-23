@@ -32,8 +32,8 @@ const es6NumsCopy2 = [...nums2];
 es6NumsCopy2[3].push(7);
 console.log(nums2); //[ 1, 2, 3, [ 4, 5, 6, 7 ] ] // original changed
 
-// const es6NumsCopy3 = [...nums2, (nums2[3] = [...nums2[3]])];
-const es6NumsCopy3 = [nums2[0], nums2[1], nums2[2], ...nums2[3]];
+const es6NumsCopy3 = [nums2[0], nums2[1], nums2[2], [...nums2[3]]];
+// algorithm: copy each element as is, no spread, then spread the nested array element
 es6NumsCopy3[3].push(8);
 console.log("recursively in an array");
 console.log(nums2);
