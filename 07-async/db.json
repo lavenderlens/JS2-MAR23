@@ -1,0 +1,10 @@
+{
+  "albums": [
+    {
+      "id": 1,
+      "title": "Born To Run",
+      "artist": "Bruce Springsteen",
+      "year": 1975
+    }
+  ]
+}

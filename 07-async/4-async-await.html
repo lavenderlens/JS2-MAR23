@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="apiData"></div>
+</body>
+<script>
+    // some folk don't like Promises
+    // most folk want to write sync-style code
+    // async await is a means of writing async code in a sync style
+    
+    // an async function is one that returns a Promise
+    async function myAsyncFunction() {
+        return 'Hello';
+    }
+
+    console.log(myAsyncFunction()); // Promise
+
+    // the await keyword can only be used inside an async function
+    async function fetchData() {
+        // wait for fetch to complete then assign the return value to response
+        // the interpreter is not actually waiting
+        // JS is non-blocking
+        try {
+            const response = await fetch('http://hn.algolia.com/api/v1/items/1');
+            const data = await response.json();
+            document.querySelector('#apiData').innerHTML = data.children[0].text;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    fetchData();
+
+</script>
+</html>

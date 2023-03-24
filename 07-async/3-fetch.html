@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="apiData"></div>
+</body>
+<script>
+    // the fetch function makes the HTTP request for us and returns a Promise
+    // fetch will make a GET request by default
+    // fetch assumes that you may have requested a very large amount of data
+    fetch('http://hn.algolia.com/api/v1/items/1')
+        // response.json() parses the response body and returns a promise
+        .then(response => response.json())
+        .then(data => document.querySelector('#apiData').innerHTML = data.children[0].text)
+        .catch(error => console.log(error));
+
+    // this will be executed from the stack before any async code
+    console.log('Hello');
+
+</script>
+</html>

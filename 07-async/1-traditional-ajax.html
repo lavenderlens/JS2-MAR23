@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="apiData"></div>
+</body>
+<script>
+    // AJAX stands for Async JS And XML
+    // AJAX is the mechanism we traditionally used to make HTTP requests
+
+    // the callback is a function that will be invoked once the data becomes available
+    function getApiData(successCallback, failureCallback) {
+        const request = new XMLHttpRequest();
+        // the handler will be added to the queue once the request is complete
+        request.onload = () => {
+            // status code 200: OK, ready state 4: request is complete
+            if (request.status == 200 && request.readyState == 4) {
+                successCallback(JSON.parse(request.response));
+            }
+        };
+        request.onerror = () => failureCallback('Something went wrong');
+        request.open('GET', 'http://hn.algolia.com/api/v1/items/1');
+        request.send();
+    }
+
+    // the arrow function arg is copied into the callback param
+    // and called when the data becomes available
+    getApiData(
+        data => {
+            console.log(data);
+            document.querySelector('#apiData').innerHTML = data.children[0].text;
+        },
+        error => console.log(error)
+    );
+
+    // this will be executed from the stack before any async code
+    console.log('Hello');
+
+</script>
+</html>

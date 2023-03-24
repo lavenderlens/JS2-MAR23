@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CURRYING</title>
+    <style>
+      div {
+        width: 8em;
+        height: 8em;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <div>a div</div>
+    <script>
+      /**
+       * curryine is to take a function that takes multiple args
+       * and convert it into a HOF that accepts just one arg
+       * where the other args are known
+       * why??
+       * because lookup time is more performant with less args
+       *
+       * it may be helpful to think of this as the opposite to rest parameters, at least conceptually
+       * rest packs zero, one, or many args to an array inside a function
+       * currying takes many args and creates multiple functions that reuire only one arg each
+       *
+       * examples, real world, could include
+       * calculating the volume of 3D shapes, area of 2D, where side lengths are already known
+       * outputting views of music track data such as length
+       * when combinations of eg artist, album, track are already known
+       *
+       *in summary, currying is of use where we wish to distill a function that accepts n args
+       into n funcs that each accept only 1 arg (where the others are known)
+       * */
+      // non-curried:
+      //   document.addEventListener("click", (event) => console.log(event));
+
+      function curriedAddEventListener(eventType) {
+        return function (handler) {
+          return function (element) {
+            element.addEventListener(eventType, handler);
+          };
+        };
+      }
+
+      const onClick = curriedAddEventListener("click");
+      onClick((event) => console.log(event))(document);
+
+      const logOnClick = curriedAddEventListener("click")((event) =>
+        console.log(event)
+      );
+      logOnClick(document);
+      logOnClick(div);
+    </script>
+  </body>
+</html>

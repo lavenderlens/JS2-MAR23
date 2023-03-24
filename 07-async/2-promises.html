@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="apiData"></div>
+  </body>
+  <script>
+    // AJAX stands for Async JS And XML
+    // AJAX is the mechanism we traditionally used to make HTTP requests
+
+    // the problem with trad AJAX is that chaining async tasks is painful
+    // Promises were seen as the solution to this problem
+    // a Promise is an object that wraps some async work
+
+    // the callback is a function that will be invoked once the data becomes available
+    const promise = new Promise(function (successCallback, failureCallback) {
+      const request = new XMLHttpRequest();
+      // the handler will be added to the queue once the request is complete
+      request.onload = () => {
+        // status code 200: OK, ready state 4: request is complete
+        if (request.status == 200 && request.readyState == 4) {
+          successCallback(JSON.parse(request.response));
+        }
+      };
+      request.onerror = () => failureCallback("Something went wrong");
+      request.open("GET", "http://hn.algolia.com/api/v1/items/1");
+      request.send();
+    });
+
+    // calling the promise's then function has the effect of calling the function we passed to the promise
+    // the then function must be passed the success callback
+    // the catch function must be passed the failure callback
+    promise
+      .then(
+        (data) =>
+          (document.querySelector("#apiData").innerHTML = data.children[0].text)
+      )
+      .catch((error) => console.log(error));
+
+    // this will be executed from the stack before any async code
+    console.log("Hello");
+  </script>
+</html>
