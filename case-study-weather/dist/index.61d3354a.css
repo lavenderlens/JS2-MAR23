@@ -227,9 +227,18 @@ img, video {
   --tw-backdrop-sepia: ;
 }
 
+.table {
+  display: table;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .font-semibold {
@@ -242,11 +251,30 @@ body {
 
 img {
   width: 10%;
+}
+
+h1, img {
   display: inline-block;
 }
 
-h1 {
-  display: inline-block;
+input, label {
+  display: block;
+}
+
+input {
+  border: 1px solid gray;
+  margin-bottom: 2em;
+}
+
+button {
+  border: 1px solid gray;
+  padding: 5px 15px;
+}
+
+p:first-letter {
+  color: #8b0000;
+  font-family: Times New Roman, Times, serif;
+  font-size: 1.4em;
 }
 
 /*# sourceMappingURL=index.61d3354a.css.map */

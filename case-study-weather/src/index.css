@@ -12,3 +12,15 @@ h1,
 img {
   display: inline-block;
 }
+input,
+label {
+  display: block;
+}
+input {
+  margin-bottom: 2em;
+  border: 1px solid grey;
+}
+button {
+  border: 1px solid grey;
+  padding: 5px 15px;
+}
